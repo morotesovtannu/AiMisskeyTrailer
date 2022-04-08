@@ -1,0 +1,2470 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="ScsProject">
+  <ModTemplates>
+    <Template xsi:type="TrailerSkin">
+      <BuildActions>
+        <Action xsi:type="CreateDirectory">
+          <Paths>
+            <string>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\accessory\</string>
+            <string>\vehicle\trailer_owned\upgrade\paintjob\{{Trailer}}\{{InternalName}}\accessories\</string>
+            <string>\material\ui\accessory\</string>
+          </Paths>
+        </Action>
+        <Action xsi:type="CopyFile">
+          <Paths>
+            <CopyPair>
+              <From>Suitable.sii</From>
+              <To>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}.sii</To>
+            </CopyPair>
+            <CopyPair>
+              <From>Shared.sui</From>
+              <To>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_shared.sui</To>
+            </CopyPair>
+          </Paths>
+        </Action>
+        <Action xsi:type="WriteTextFile">
+          <FileName>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_metallic.sui</FileName>
+          <TextLines>
+            <string />
+            <string />
+            <string />
+            <string />
+            <string />
+          </TextLines>
+        </Action>
+        <Action xsi:type="WriteTextFile">
+          <FileName>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_mask.sui</FileName>
+          <TextLines>
+            <string />
+            <string />
+            <string />
+            <string />
+            <string />
+          </TextLines>
+        </Action>
+        <Action xsi:type="ConditionalAction">
+          <BuildActions>
+            <Action xsi:type="CopyFile">
+              <Paths>
+                <CopyPair>
+                  <From>metallic.sui</From>
+                  <To>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_metallic.sui</To>
+                </CopyPair>
+              </Paths>
+            </Action>
+          </BuildActions>
+          <Comparison>Equals</Comparison>
+          <ExecuteIf>[EnableMetallic]</ExecuteIf>
+        </Action>
+        <Action xsi:type="ConditionalAction">
+          <BuildActions>
+            <Action xsi:type="CopyFile">
+              <Paths>
+                <CopyPair>
+                  <From>mask.sui</From>
+                  <To>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_mask.sui</To>
+                </CopyPair>
+              </Paths>
+            </Action>
+          </BuildActions>
+          <Comparison>Equals</Comparison>
+          <ExecuteIf>[EnableMask]</ExecuteIf>
+        </Action>
+        <Action xsi:type="UpdateTextVariables">
+          <Paths>
+            <string>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}.sii</string>
+            <string>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_shared.sui</string>
+            <string>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_metallic.sui</string>
+            <string>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\{{InternalName}}_mask.sui</string>
+          </Paths>
+        </Action>
+        <Action xsi:type="GenerateImageFile">
+          <Destination>\vehicle\trailer_owned\upgrade\paintjob\{{Trailer}}\{{InternalName}}\{{InternalName}}_shared.dds</Destination>
+          <Dimension>
+            <Width>4</Width>
+            <Height>4</Height>
+          </Dimension>
+          <Fill>[BaseColor]</Fill>
+          <OutputFormat>
+            <Format>Dds</Format>
+            <Preset>ScsSkinImage</Preset>
+          </OutputFormat>
+        </Action>
+        <Action xsi:type="GenerateTobjFile">
+          <Content>/vehicle/trailer_owned/upgrade/paintjob/{{Trailer}}/{{InternalName}}/{{InternalName}}_shared.dds</Content>
+          <FileName>\vehicle\trailer_owned\upgrade\paintjob\{{Trailer}}\{{InternalName}}\{{InternalName}}_shared.tobj</FileName>
+          <TobjType>TruckSkin</TobjType>
+        </Action>
+        <Action xsi:type="WriteTextFile">
+          <FileName>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\accessory\{{InternalName}}.sii</FileName>
+          <TextLines>
+            <string>SiiNunit</string>
+            <string>{</string>
+            <string />
+          </TextLines>
+        </Action>
+        <Action xsi:type="ProcessSuitableImages">
+          <BuildActions>
+            <Action xsi:type="ImportImage">
+              <Destination>\vehicle\trailer_owned\upgrade\paintjob\{{Trailer}}\{{InternalName}}\accessories\acc_{{INDEX}}.dds</Destination>
+              <OutputFormat>
+                <Format>Dds</Format>
+                <Preset>ScsSkinImage</Preset>
+              </OutputFormat>
+              <Source>{{IMAGE}}</Source>
+            </Action>
+            <Action xsi:type="GenerateTobjFile">
+              <Content>/vehicle/trailer_owned/upgrade/paintjob/{{Trailer}}/{{InternalName}}/accessories/acc_{{INDEX}}.dds</Content>
+              <FileName>\vehicle\trailer_owned\upgrade\paintjob\{{Trailer}}\{{InternalName}}\accessories\acc_{{INDEX}}.tobj</FileName>
+              <TobjType>TruckSkin</TobjType>
+            </Action>
+            <Action xsi:type="AppendTextFile">
+              <FileName>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\accessory\{{InternalName}}.sii</FileName>
+              <TextLines>
+                <string>simple_paint_job_data : .ovr{{INDEX}}</string>
+                <string>{</string>
+                <string>paint_job_mask: "/vehicle/trailer_owned/upgrade/paintjob/{{Trailer}}/{{InternalName}}/accessories/acc_{{INDEX}}.tobj"</string>
+                <string>{{SUITABLE}}</string>
+                <string>}</string>
+                <string />
+              </TextLines>
+            </Action>
+          </BuildActions>
+          <IndexOffset>0</IndexOffset>
+          <VariableName>BodySkins</VariableName>
+        </Action>
+        <Action xsi:type="ProcessSuitableImages">
+          <BuildActions>
+            <Action xsi:type="ImportImage">
+              <Destination>\vehicle\trailer_owned\upgrade\paintjob\{{Trailer}}\{{InternalName}}\accessories\acc_{{INDEX}}.dds</Destination>
+              <OutputFormat>
+                <Format>Dds</Format>
+                <Preset>ScsSkinImage</Preset>
+              </OutputFormat>
+              <Source>{{IMAGE}}</Source>
+            </Action>
+            <Action xsi:type="GenerateTobjFile">
+              <Content>/vehicle/trailer_owned/upgrade/paintjob/{{Trailer}}/{{InternalName}}/accessories/acc_{{INDEX}}.dds</Content>
+              <FileName>\vehicle\trailer_owned\upgrade\paintjob\{{Trailer}}\{{InternalName}}\accessories\acc_{{INDEX}}.tobj</FileName>
+              <TobjType>TruckSkin</TobjType>
+            </Action>
+            <Action xsi:type="AppendTextFile">
+              <FileName>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\accessory\{{InternalName}}.sii</FileName>
+              <TextLines>
+                <string>simple_paint_job_data : .ovr{{INDEX}}</string>
+                <string>{</string>
+                <string>paint_job_mask: "/vehicle/trailer_owned/upgrade/paintjob/{{Trailer}}/{{InternalName}}/accessories/acc_{{INDEX}}.tobj"</string>
+                <string>{{SUITABLE}}</string>
+                <string>}</string>
+                <string />
+              </TextLines>
+            </Action>
+          </BuildActions>
+          <IndexOffset>50</IndexOffset>
+          <VariableName>AccessorySkins</VariableName>
+        </Action>
+        <Action xsi:type="AppendTextFile">
+          <FileName>\def\vehicle\trailer_owned\{{Trailer}}\paint_job\accessory\{{InternalName}}.sii</FileName>
+          <TextLines>
+            <string />
+            <string>}</string>
+          </TextLines>
+        </Action>
+        <Action xsi:type="ImportImage">
+          <Destination>\material\ui\accessory\{{InternalName}}.dds</Destination>
+          <OutputFormat>
+            <Format>Dds</Format>
+            <Preset>ScsIconImage</Preset>
+          </OutputFormat>
+          <OverlaySource>{{SkinIcon.OverlaySource}}</OverlaySource>
+          <OverlayTransparency>0.4</OverlayTransparency>
+          <Source>{{SkinIcon}}</Source>
+        </Action>
+        <Action xsi:type="GenerateTobjFile">
+          <Content>/material/ui/accessory/{{InternalName}}.dds</Content>
+          <FileName>\material\ui\accessory\{{InternalName}}.tobj</FileName>
+          <TobjType>UIIcon</TobjType>
+        </Action>
+        <Action xsi:type="WriteTextFile">
+          <FileName>\material\ui\accessory\{{InternalName}}.mat</FileName>
+          <TextLines>
+            <string />
+            <string>material : "ui"</string>
+            <string>{</string>
+            <string>	texture : "{{InternalName}}.tobj"</string>
+            <string>	texture_name : "texture"</string>
+            <string>}</string>
+          </TextLines>
+        </Action>
+      </BuildActions>
+      <MS2LibraryVersion>
+        <Major>2021</Major>
+        <Minor>3</Minor>
+      </MS2LibraryVersion>
+      <TemplateBaseFolder>\Data\ModProjects\ETS2\Templates\TrailerSkin\</TemplateBaseFolder>
+      <TemplateDescription>Create a trailer skin</TemplateDescription>
+      <TemplateGroup>Trailer Skin</TemplateGroup>
+      <TemplateName>Trailer Skin</TemplateName>
+      <Variables>
+        <Variable xsi:type="ScsVehicleVariable">
+          <ChildVariables />
+          <Group>trailer</Group>
+          <Id>f97c4a68-ef99-475f-9e11-6ac877559728</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>Trailer</Name>
+          <Text>Trailer</Text>
+          <Validators />
+          <AccessoryItems>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.paint_box.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_f_l.paint_box</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.sideskirt_02.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_l.sideskirt_02</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.paint_box.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_f_r.paint_box</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.sideskirt_02.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_r.sideskirt_02</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAlso present on:\nB-Double, 2+2 Axles, Spread.</Description>
+              <Group>Left Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.sideskirt_01.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_l.sideskirt_01</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.p_box_cage.jpg</Image>
+              <Text>Protection + Painted Box</Text>
+              <Value>chs_f_l.p_box_cage</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.p_box_doubl.jpg</Image>
+              <Text>Painted Box x2</Text>
+              <Value>chs_f_l.p_box_doubl</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.palletbox.jpg</Image>
+              <Text>Pallet Box</Text>
+              <Value>chs_f_l.palletbox</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_l.sideskirt_01.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_r_l.sideskirt_01</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_l.paint_box.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_r_l.paint_box</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_l.palletbox.jpg</Image>
+              <Text>Pallet Box</Text>
+              <Value>chs_r_l.palletbox</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAlso present on:\nB-Double, 2+2 Axles, Spread.</Description>
+              <Group>Right Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.sideskirt_01.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_r.sideskirt_01</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.p_box_cage.jpg</Image>
+              <Text>Protection + Painted Box</Text>
+              <Value>chs_f_r.p_box_cage</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.p_box_doubl.jpg</Image>
+              <Text>Painted Box x2</Text>
+              <Value>chs_f_r.p_box_doubl</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.palletbox.jpg</Image>
+              <Text>Pallet Box</Text>
+              <Value>chs_f_r.palletbox</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_r.sideskirt_01.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_r_r.sideskirt_01</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_r.paint_box.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_r_r.paint_box</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_r.palletbox.jpg</Image>
+              <Text>Pallet Box</Text>
+              <Value>chs_r_r.palletbox</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAlso present on:\nDouble 3+3 Steerable\nB-Double 2+2 and 2+2 Spread\nHTC Doubles (4+2+4 and 3+2+4).</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_l.sideskirt_bd.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_m_l.sideskirt_bd</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAlso present on:\nDouble 3+3 Steerable\nB-Double 2+2 and 2+2 Spread\nHTC Doubles (4+2+4 and 3+2+4).</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_l.paint_boxbd.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_m_l.paint_boxbd</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAlso present on:\nDouble 3+3 Steerable\nB-Double 2+2 and 2+2 Spread\nHTC Doubles (4+2+4 and 3+2+4).</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_r.sideskirt_bd.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_m_r.sideskirt_bd</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAlso present on:\nDouble 3+3 Steerable\nB-Double 2+2 and 2+2 Spread\nHTC Doubles (4+2+4 and 3+2+4).</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_r.paint_boxbd.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_m_r.paint_boxbd</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_l.sideskirt.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_m_l.sideskirt</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_l.paint_box_m.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_m_l.paint_box_m</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_r.sideskirt.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_m_r.sideskirt</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_r.paint_box_m.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_m_r.paint_box_m</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.paint_box_d.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_f_l.paint_box_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.sideskirt_1d.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_l.sideskirt_1d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_l.sideskirt_02.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_r_l.sideskirt_02</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_l.paint_box_d.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_r_l.paint_box_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_r.sideskirt_02.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_r_r.sideskirt_02</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_r_r.paint_box_d.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_r_r.paint_box_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.paint_box_d.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_f_r.paint_box_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.sideskirt_1d.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_r.sideskirt_1d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.sideskirt_03.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_l.sideskirt_03</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.sideskirt_03.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_r.sideskirt_03</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_l.sideskirt_d.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_m_l.sideskirt_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_l.paint_box_d.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_m_l.paint_box_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 136 rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_r.sideskirt_d.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_m_r.sideskirt_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 middle</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_m_r.paint_box_d.jpg</Image>
+              <Text>Painted Box</Text>
+              <Value>chs_m_r.paint_box_d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Left Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.sideskirt_2d.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_l.sideskirt_2d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Right Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_r.sideskirt_2d.jpg</Image>
+              <Text>Side skirt</Text>
+              <Value>chs_f_r.sideskirt_2d</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on refridgerated trailers.</Description>
+              <Group>Left Side 78 front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\chs_f_l.t_box.jpg</Image>
+              <Text>Thermo Box Cooler</Text>
+              <Value>chs_f_l.t_box</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on 78 curtainsider trailers.</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.door_c.jpg</Image>
+              <Text>Front Door</Text>
+              <Value>f_body.door_c</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on 78 dry van, reefer and ins (double chassis types).</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.door_dv.jpg</Image>
+              <Text>Front Door</Text>
+              <Value>f_body.door_dv</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on 78 side door dry van, side door reefer and side door ins (double chassis types)..</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.door_dvsd.jpg</Image>
+              <Text>Front Door</Text>
+              <Value>f_body.door_dvsd</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on curtainsider trailers.</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.f_toolbox.jpg</Image>
+              <Text>Toolbox</Text>
+              <Value>f_body.f_toolbox</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on moving floor 78 and 136 trailers.</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.ladder.jpg</Image>
+              <Text>Ladder</Text>
+              <Value>f_body.ladder</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on moving floor 78 B Double trailer.</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.ladder_bd.jpg</Image>
+              <Text>Ladder</Text>
+              <Value>f_body.ladder_bd</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on refridgerated trailers.</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.th_box_paint.jpg</Image>
+              <Text>Thermo Box Cooler (refeer)</Text>
+              <Value>f_body.th_box_paint</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on moving floor 136 trailer.</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.th_box_p_mf.jpg</Image>
+              <Text>Thermo Box Cooler (MF)</Text>
+              <Value>f_body.th_box_p_mf</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.\nAvailable only on 78 curtainsider trailers.</Description>
+              <Group>Body Front</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\f_body.wall_c.jpg</Image>
+              <Text>Front Wall</Text>
+              <Value>f_body.wall_c</Value>
+            </ListItem>
+            <ListItem>
+              <Description>See screenshot for location.</Description>
+              <Group>Body Rear</Group>
+              <Image>\Data\ModData\SCS\Vehicles\Images\Trailers\SCSBox\rear_body.wind_def.jpg</Image>
+              <Text>Wind Deflector</Text>
+              <Value>rear_body.wind_def</Value>
+            </ListItem>
+            <ListItem>
+              <Description>Rear bumper. Found on:\nSingle chassis types\nDouble chassis types</Description>
+              <Group>Body Rear</Group>
+              <Image />
+              <Text>Rear Bumper (Exclusive)</Text>
+              <Value>r_bumper.paint</Value>
+            </ListItem>
+            <ListItem>
+              <Description>Rear bumper. Found on:\nDouble 3+3, Steerable\nB-Double chassis types\nHTC Double chassis types</Description>
+              <Group>Body Rear</Group>
+              <Image />
+              <Text>Rear Bumper (Exclusive)</Text>
+              <Value>r_bumper_bd.paint</Value>
+            </ListItem>
+            <ListItem>
+              <Description>Rear bumper. Found on:\nDouble chassis types\nHTC double (4+2+3 and 4+2+4)</Description>
+              <Group>Body Rear</Group>
+              <Image />
+              <Text>Rear Bumper (Exclusive)</Text>
+              <Value>r_bumper_d.paint</Value>
+            </ListItem>
+          </AccessoryItems>
+          <Game>ETS2</Game>
+          <InternalName>scs.box</InternalName>
+          <VehicleAuthor>SCS Software</VehicleAuthor>
+          <VehicleImage>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\curtain136.jpg</VehicleImage>
+          <VehicleName>SCS Box Trailer</VehicleName>
+          <VehicleType>Trailers</VehicleType>
+          <VehicleVariants>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Curtainsider</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\curtain78.jpg</Image>
+              <InternalName>body.curtain_78</InternalName>
+              <Name>Curtainsider 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Curtainsider</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\curtain78bd.jpg</Image>
+              <InternalName>body.curtain_78bd</InternalName>
+              <Name>Curtainsider 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Curtainsider</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\curtain136.jpg</Image>
+              <InternalName>body.curtain_136</InternalName>
+              <Name>Curtainsider 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Dry Van</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvan78.jpg</Image>
+              <InternalName>body.dry_van_78</InternalName>
+              <Name>Dry Van 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Dry Van</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvan78bd.jpg</Image>
+              <InternalName>body.dry_van_78bd</InternalName>
+              <Name>Dry Van 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Dry Van</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvan136.jpg</Image>
+              <InternalName>body.dry_van_136</InternalName>
+              <Name>Dry Van 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Dry Van Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvanside78.jpg</Image>
+              <InternalName>body.dry_vans_78</InternalName>
+              <Name>Dry Van Side 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Dry Van Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvanside78bd.jpg</Image>
+              <InternalName>body.dry_vs_78bd</InternalName>
+              <Name>Dry Van Side 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Dry Van Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvanside136.jpg</Image>
+              <InternalName>body.dry_vans_136</InternalName>
+              <Name>Dry Van Side 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Insulated</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insul78.jpg</Image>
+              <InternalName>body.ins_78</InternalName>
+              <Name>Insulated 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Insulated</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insul78bd.jpg</Image>
+              <InternalName>body.ins_78bd</InternalName>
+              <Name>Insulated 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Insulated</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insul136.jpg</Image>
+              <InternalName>body.ins_136</InternalName>
+              <Name>Insulated 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Insulated Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insulside78.jpg</Image>
+              <InternalName>body.ins_s_78</InternalName>
+              <Name>Insulated Side 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Insulated Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insulside78bd.jpg</Image>
+              <InternalName>body.ins_s_78bd</InternalName>
+              <Name>Insulated Side 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Insulated Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insulside136.jpg</Image>
+              <InternalName>body.ins_s_136</InternalName>
+              <Name>Insulated Side 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Moving Floor</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor78.jpg</Image>
+              <InternalName>body.m_floor_78</InternalName>
+              <Name>Moving Floor 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Moving Floor</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor78bd.jpg</Image>
+              <InternalName>body.m_floor_78bd</InternalName>
+              <Name>Moving Floor 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Moving Floor</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor136.jpg</Image>
+              <InternalName>body.m_floor_136</InternalName>
+              <Name>Moving Floor 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Moving Floor Refrigerated</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor_reefer.jpg</Image>
+              <InternalName>body.m_floor_136r</InternalName>
+              <Name>Moving Floor Refrigerated 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Refrigerated</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reefer78.jpg</Image>
+              <InternalName>body.reefer_78</InternalName>
+              <Name>Refrigerated 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Refrigerated</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reefer78bd.jpg</Image>
+              <InternalName>body.reefer_78bd</InternalName>
+              <Name>Refrigerated 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Refrigerated</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reefer136.jpg</Image>
+              <InternalName>body.reefer_136</InternalName>
+              <Name>Refrigerated 136</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Refrigerated Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reeferside78.jpg</Image>
+              <InternalName>body.reefers_78</InternalName>
+              <Name>Refrigerated Side 78</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Refrigerated Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reeferside78bd.jpg</Image>
+              <InternalName>body.reefers_78bd</InternalName>
+              <Name>Refrigerated Side 78 B-Double</Name>
+            </Variant>
+            <Variant>
+              <AccessoryDependencies />
+              <Group>Refrigerated Side</Group>
+              <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reeferside136.jpg</Image>
+              <InternalName>body.reefers_136</InternalName>
+              <Name>Refrigerated Side 136</Name>
+            </Variant>
+          </VehicleVariants>
+          <XmlDefinitionAuthor>pete_agreatguy</XmlDefinitionAuthor>
+        </Variable>
+        <Variable xsi:type="StringVariable">
+          <ChildVariables />
+          <Group>basic</Group>
+          <HelpSource>/docs/references/internal-name-scs</HelpSource>
+          <Id>c4978cb4-cdbd-4b74-8bff-f109229f7c80</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>InternalName</Name>
+          <Text>Skin Internal Name</Text>
+          <Validators>
+            <Validator xsi:type="NotEmptyValidator">
+              <AdviceMessage>Please enter a value.</AdviceMessage>
+            </Validator>
+            <Validator xsi:type="ScsInternalNameValidator" />
+          </Validators>
+          <Value>aimktrailer</Value>
+        </Variable>
+        <Variable xsi:type="StringVariable">
+          <ChildVariables />
+          <Group>basic</Group>
+          <Id>d14e05e8-8fbd-455e-966f-5a4bdaa981f6</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>SkinName</Name>
+          <Text>Skin Name</Text>
+          <Validators />
+          <Value>AiMisskeyTrailer</Value>
+        </Variable>
+        <Variable xsi:type="IntegerVariable">
+          <ChildVariables />
+          <Group>basic</Group>
+          <HelpSource>/docs/references/price-scs</HelpSource>
+          <Id>a5ebf38a-cbba-4ada-95f6-9850cfad0982</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>SkinPrice</Name>
+          <Text>Skin Price</Text>
+          <Validators>
+            <Validator xsi:type="NumberRangeValidator">
+              <AdviceMessage />
+              <MinValue>1</MinValue>
+              <MaxValue xsi:nil="true" />
+            </Validator>
+          </Validators>
+          <Value>1000</Value>
+        </Variable>
+        <Variable xsi:type="IntegerVariable">
+          <ChildVariables />
+          <Group>basic</Group>
+          <Id>e952ba12-f2ee-43e3-91c2-3621a46cc81f</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>SkinUnlock</Name>
+          <Text>Unlock At Level</Text>
+          <Validators />
+          <Value>3</Value>
+        </Variable>
+        <Variable xsi:type="ScsColorVariable">
+          <ChildVariables />
+          <Group>basic</Group>
+          <Id>e19690a3-2b69-420c-aa6d-42d288cf7421</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>BaseColor</Name>
+          <Text>Base Color</Text>
+          <Validators />
+          <R>0.6</R>
+          <G>0.6</G>
+          <B>0.6</B>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <Group>basic</Group>
+          <Id>eea5ccb3-cbfa-4db3-b526-ad91f8957380</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>BaseColorLocked</Name>
+          <Text>Base Color Locked</Text>
+          <Validators />
+          <Value>true</Value>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <Group>basic</Group>
+          <HelpSource>/docs/references/alternate-uv-set-scs</HelpSource>
+          <Id>3e87e0fe-66ed-4762-8f5e-9bccbafb276a</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>AlternateUvSet</Name>
+          <Text>Alternate UV</Text>
+          <Validators />
+          <Value>false</Value>
+        </Variable>
+        <Variable xsi:type="ScsIconVariable">
+          <ChildVariables>
+            <Variable xsi:type="StringVariable">
+              <ChildVariables />
+              <Id>f419ea13-c179-46ee-9c04-ed5985a28301</Id>
+              <IsEnabled>true</IsEnabled>
+              <Name>OverlaySource</Name>
+              <Validators />
+              <Value />
+            </Variable>
+          </ChildVariables>
+          <Group>icon</Group>
+          <Id>49e6321b-13a9-43d2-955b-f0c2b69f06a5</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>SkinIcon</Name>
+          <Text>Icon</Text>
+          <Validators>
+            <Validator xsi:type="NotEmptyValidator">
+              <AdviceMessage>Please enter a value.</AdviceMessage>
+            </Validator>
+            <Validator xsi:type="NPOTValidator">
+              <IsIcon>true</IsIcon>
+            </Validator>
+          </Validators>
+          <Value>C:\Users\uttym\OneDrive\ドキュメント\Mods Studio 2\AiTrailer Ver.1\25664.png</Value>
+          <AllowedExtensions>
+            <string>png</string>
+            <string>dds</string>
+          </AllowedExtensions>
+          <PreloadDefault>false</PreloadDefault>
+        </Variable>
+        <Variable xsi:type="ScsSuitableImageArrayVariable">
+          <ChildVariables />
+          <Group>images</Group>
+          <Id>088fdf4d-9bdf-40b6-9674-9db5ecc9e720</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>BodySkins</Name>
+          <Text>Paintjob files</Text>
+          <Validators />
+          <PredefinedValueSource>[Trailer.VehicleVariants]</PredefinedValueSource>
+          <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          <SuitableForInternalName>acc_list</SuitableForInternalName>
+          <SuitableForText>Suitable body and/or accessory</SuitableForText>
+          <Value>
+            <ScsSuitableImageVariable>
+              <ChildVariables />
+              <Id>259e2630-319a-40b7-8d7d-c1672f21df9a</Id>
+              <IsEnabled>true</IsEnabled>
+              <SuitableFor>
+                <ChildVariables />
+                <Id>7d925ff7-5b24-496b-a3a6-995e16f456f4</Id>
+                <IsEnabled>true</IsEnabled>
+                <Text>Suitable body and/or accessory</Text>
+                <AllowEditing>false</AllowEditing>
+                <DisplayMode>Auto</DisplayMode>
+                <Value>
+                  <string>body.curtain_136</string>
+                </Value>
+                <InternalName>acc_list</InternalName>
+                <PredefinedValues>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Curtainsider</Group>
+                    <Id>1d46da1f-5e8f-4dae-aba5-87f13f8b01ec</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Curtainsider 78</Text>
+                    <Value>body.curtain_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\curtain78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Curtainsider</Group>
+                    <Id>813de130-7a1a-46b2-83ff-c078bba14921</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Curtainsider 78 B-Double</Text>
+                    <Value>body.curtain_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\curtain78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Curtainsider</Group>
+                    <Id>68277abe-47ca-4ec7-9e14-098e92fd8d2e</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Curtainsider 136</Text>
+                    <Value>body.curtain_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\curtain136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Dry Van</Group>
+                    <Id>0e12d39a-ddd9-43c4-8047-a1e5ee84b5d8</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Dry Van 78</Text>
+                    <Value>body.dry_van_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvan78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Dry Van</Group>
+                    <Id>0a9ae17a-7228-4430-aafd-8b44bd36546f</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Dry Van 78 B-Double</Text>
+                    <Value>body.dry_van_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvan78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Dry Van</Group>
+                    <Id>efcc8e3d-619b-415f-a151-8ae109c43601</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Dry Van 136</Text>
+                    <Value>body.dry_van_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvan136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Dry Van Side</Group>
+                    <Id>c5e2d043-1a02-4334-8382-020f372372ab</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Dry Van Side 78</Text>
+                    <Value>body.dry_vans_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvanside78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Dry Van Side</Group>
+                    <Id>a132812e-270a-48c9-948d-c5f7d74b4fc3</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Dry Van Side 78 B-Double</Text>
+                    <Value>body.dry_vs_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvanside78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Dry Van Side</Group>
+                    <Id>cd67fdda-2f7c-4f7b-8a01-82c1940b8e1f</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Dry Van Side 136</Text>
+                    <Value>body.dry_vans_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\dryvanside136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Insulated</Group>
+                    <Id>9f969904-d74d-4134-a5f5-7a017dd69787</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Insulated 78</Text>
+                    <Value>body.ins_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insul78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Insulated</Group>
+                    <Id>b8720d62-6183-4e4f-adac-aa6794acfbef</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Insulated 78 B-Double</Text>
+                    <Value>body.ins_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insul78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Insulated</Group>
+                    <Id>ba0b587c-0217-4f12-b165-77890f59a08b</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Insulated 136</Text>
+                    <Value>body.ins_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insul136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Insulated Side</Group>
+                    <Id>d43bca85-94c6-4a44-b63e-6f35009fec6f</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Insulated Side 78</Text>
+                    <Value>body.ins_s_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insulside78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Insulated Side</Group>
+                    <Id>d2aa15c6-7f01-4be8-806f-d43ea501e135</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Insulated Side 78 B-Double</Text>
+                    <Value>body.ins_s_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insulside78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Insulated Side</Group>
+                    <Id>b1ca559d-b311-4fec-8bab-606976a335ab</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Insulated Side 136</Text>
+                    <Value>body.ins_s_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\insulside136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Moving Floor</Group>
+                    <Id>5daf7ead-ba33-42d4-884e-66c69a3c41ba</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Moving Floor 78</Text>
+                    <Value>body.m_floor_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Moving Floor</Group>
+                    <Id>f3cc31be-0379-4019-97cd-6b07ca6d78ac</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Moving Floor 78 B-Double</Text>
+                    <Value>body.m_floor_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Moving Floor</Group>
+                    <Id>9cce40bc-99aa-4e93-b885-5d0b71b44b76</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Moving Floor 136</Text>
+                    <Value>body.m_floor_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Moving Floor Refrigerated</Group>
+                    <Id>1b6c52a7-2545-450f-83b3-060bc26bb1d1</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Moving Floor Refrigerated 136</Text>
+                    <Value>body.m_floor_136r</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\mfloor_reefer.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Refrigerated</Group>
+                    <Id>9ae707b5-d3e1-4637-95b7-79ff5e0ebc5e</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Refrigerated 78</Text>
+                    <Value>body.reefer_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reefer78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Refrigerated</Group>
+                    <Id>80e363b8-4460-42af-9b6a-50ea98b9a502</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Refrigerated 78 B-Double</Text>
+                    <Value>body.reefer_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reefer78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Refrigerated</Group>
+                    <Id>bfdcb272-9470-407e-8aba-78a753e0b268</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Refrigerated 136</Text>
+                    <Value>body.reefer_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reefer136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Refrigerated Side</Group>
+                    <Id>5a1d6f45-6056-43b5-b01f-8a0574ceb65c</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Refrigerated Side 78</Text>
+                    <Value>body.reefers_78</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reeferside78.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Refrigerated Side</Group>
+                    <Id>fa9ee8fd-e874-494d-845e-74e1cf78a15b</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Refrigerated Side 78 B-Double</Text>
+                    <Value>body.reefers_78bd</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reeferside78bd.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                  <ListItemVariable>
+                    <ChildVariables />
+                    <Group>Refrigerated Side</Group>
+                    <Id>2b293770-2d93-4cca-9b14-91e7ffbfef55</Id>
+                    <IsEnabled>true</IsEnabled>
+                    <Text>Refrigerated Side 136</Text>
+                    <Value>body.reefers_136</Value>
+                    <Image>Data\ModData\SCS\Vehicles\Images\TrailerPreviews\ETS2\SCSBox\reeferside136.jpg</Image>
+                    <PredefinedValuesSelected>false</PredefinedValuesSelected>
+                  </ListItemVariable>
+                </PredefinedValues>
+                <PredefinedValuesSelected>false</PredefinedValuesSelected>
+              </SuitableFor>
+              <ImageSource>
+                <ChildVariables />
+                <Id>29692984-e406-45d8-b6f5-65d1d773d92f</Id>
+                <IsEnabled>true</IsEnabled>
+                <Value>C:\Users\uttym\OneDrive\ドキュメント\Mods Studio 2\AiTrailer Ver.1\CurtainSider_ai.png</Value>
+                <AllowedExtensions>
+                  <string>png</string>
+                  <string>dds</string>
+                </AllowedExtensions>
+                <PreloadDefault>false</PreloadDefault>
+              </ImageSource>
+            </ScsSuitableImageVariable>
+          </Value>
+        </Variable>
+        <Variable xsi:type="ScsSuitableImageArrayVariable">
+          <ChildVariables />
+          <Group>accessories</Group>
+          <Id>b7bd8a32-be2d-45f7-8992-63700a42eb84</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>AccessorySkins</Name>
+          <Text>Accessories skins</Text>
+          <Validators />
+          <PredefinedValueSource>[Trailer.AccessoryItems]</PredefinedValueSource>
+          <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          <SuitableForInternalName>acc_list</SuitableForInternalName>
+          <SuitableForText>For accessories</SuitableForText>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <Group>Metallic Options</Group>
+          <Id>6d0a5dca-6d30-46ff-a09d-c9bfa60fa9c0</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>EnableMetallic</Name>
+          <Text>Enable Metallic Color</Text>
+          <Validators />
+          <Value>false</Value>
+        </Variable>
+        <Variable xsi:type="ScsColorVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>d6a8813a-2bc1-45d3-9bb1-62b968dd5497</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlipColor</Name>
+          <Text>Flip Color</Text>
+          <Validators />
+          <R>0.15</R>
+          <G>0.15</G>
+          <B>0.15</B>
+        </Variable>
+        <Variable xsi:type="ScsColorVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>7983cc3c-aa3b-45f4-937e-5974cea7bcb4</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlakeColor</Name>
+          <Text>Flake Color</Text>
+          <Validators />
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Variable>
+        <Variable xsi:type="FloatVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>cd2195ab-2479-4368-86c8-b5130c45ec3e</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlipStrenght</Name>
+          <Text>Flip Strenght</Text>
+          <Validators />
+          <Value>0.94</Value>
+          <Step>0.1</Step>
+        </Variable>
+        <Variable xsi:type="FloatVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>f04031db-b137-4e22-9c9f-4e77a96219a4</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlakeUVScale</Name>
+          <Text>Flake UV Scale</Text>
+          <Validators />
+          <Value>20</Value>
+          <Step>0.1</Step>
+        </Variable>
+        <Variable xsi:type="FloatVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>d527406c-2682-4ddc-b447-29bcc4f3e231</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlakeDensity</Name>
+          <Text>Flake Density</Text>
+          <Validators />
+          <Value>1.5</Value>
+          <Step>0.1</Step>
+        </Variable>
+        <Variable xsi:type="FloatVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>7aca0aad-0c11-417e-8582-7a60f75486e1</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlakeShininess</Name>
+          <Text>Flake Shininess</Text>
+          <Validators />
+          <Value>30</Value>
+          <Step>0.1</Step>
+        </Variable>
+        <Variable xsi:type="FloatVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>2c8f0982-9d1e-44eb-a5dc-94b715425b63</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlakeClearcoat</Name>
+          <Text>Flake Clearcoat</Text>
+          <Validators />
+          <Value>5</Value>
+          <Step>0.1</Step>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>066c29e3-5348-4abb-83ac-2870f9a2a5af</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlipColorLocked</Name>
+          <Text>Flip Color Locked</Text>
+          <Validators />
+          <Value>false</Value>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMetallic]</EnabledSource>
+          <Group>Metallic Options</Group>
+          <Id>d14963ea-46de-4942-b833-b76a462312f8</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>FlakeColorLocked</Name>
+          <Text>Flake Color Locked</Text>
+          <Validators />
+          <Value>false</Value>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <Group>Mask Options</Group>
+          <Id>8ebded8d-be9d-499e-aabf-284669436bbc</Id>
+          <IsEnabled>true</IsEnabled>
+          <Name>EnableMask</Name>
+          <Text>Enable Mask Color</Text>
+          <Validators />
+          <Value>false</Value>
+        </Variable>
+        <Variable xsi:type="ScsColorVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMask]</EnabledSource>
+          <Group>Mask Options</Group>
+          <Id>fc0b8cbb-e40c-4d23-baf7-97ce53751910</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>RedColor</Name>
+          <Text>Red Mask Color</Text>
+          <Validators />
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Variable>
+        <Variable xsi:type="ScsColorVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMask]</EnabledSource>
+          <Group>Mask Options</Group>
+          <Id>45b8f19c-7a1b-428b-818f-4e9937998127</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>GreenColor</Name>
+          <Text>Green Mask Color</Text>
+          <Validators />
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Variable>
+        <Variable xsi:type="ScsColorVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMask]</EnabledSource>
+          <Group>Mask Options</Group>
+          <Id>909bba79-256a-48a9-a1b1-6aa9d472df33</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>BlueColor</Name>
+          <Text>Blue Mask Color</Text>
+          <Validators />
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMask]</EnabledSource>
+          <Group>Mask Options</Group>
+          <Id>f346a7ec-74f9-411e-80e3-5ee59e51403f</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>RedColorLocked</Name>
+          <Text>Red Color Locked</Text>
+          <Validators />
+          <Value>true</Value>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMask]</EnabledSource>
+          <Group>Mask Options</Group>
+          <Id>5193a0c3-e603-470d-abcf-e08fe05780b2</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>GreenColorLocked</Name>
+          <Text>Green Color Locked</Text>
+          <Validators />
+          <Value>true</Value>
+        </Variable>
+        <Variable xsi:type="BooleanVariable">
+          <ChildVariables />
+          <EnabledSource>[EnableMask]</EnabledSource>
+          <Group>Mask Options</Group>
+          <Id>1deab687-8f05-462c-89bb-7a97d7d7644d</Id>
+          <IsEnabled>false</IsEnabled>
+          <Name>BlueColorLocked</Name>
+          <Text>Blue Color Locked</Text>
+          <Validators />
+          <Value>true</Value>
+        </Variable>
+      </Variables>
+    </Template>
+  </ModTemplates>
+  <MS2LibraryVersion>
+    <Major>2021</Major>
+    <Minor>3</Minor>
+  </MS2LibraryVersion>
+  <ProjectBaseFolder>.\Data\ModProjects\ETS2\</ProjectBaseFolder>
+  <ProjectDescription>Mod project for Euro Truck Simulator 2 by SCS Software</ProjectDescription>
+  <ProjectExportFileFilter>SCS files (*.scs)|*.scs|ZIP files (*.zip)|*.zip</ProjectExportFileFilter>
+  <ProjectImage>header.jpg</ProjectImage>
+  <ProjectInternalName>scs_ets2_mod</ProjectInternalName>
+  <ProjectName>ETS2 Mod Project</ProjectName>
+  <SteamId>227300</SteamId>
+  <TemplateLocation>.\Templates\</TemplateLocation>
+  <ScsModManifest>
+    <BuildActions>
+      <Action xsi:type="CopyFile">
+        <Paths>
+          <CopyPair>
+            <From>manifest.sii</From>
+            <To>\manifest.sii</To>
+          </CopyPair>
+        </Paths>
+      </Action>
+      <Action xsi:type="UpdateTextVariables">
+        <Paths>
+          <string>\manifest.sii</string>
+        </Paths>
+      </Action>
+      <Action xsi:type="ImportImage">
+        <Destination>\mod_icon.jpg</Destination>
+        <OutputFormat>
+          <Format>Jpg</Format>
+          <Preset>Default</Preset>
+        </OutputFormat>
+        <Source>{{icon}}</Source>
+      </Action>
+      <Action xsi:type="WriteTextFile">
+        <FileName>\mod_description.txt</FileName>
+        <TextContent>{{description}}</TextContent>
+        <TextLines />
+      </Action>
+    </BuildActions>
+    <MS2LibraryVersion>
+      <Major>2021</Major>
+      <Minor>3</Minor>
+    </MS2LibraryVersion>
+    <TemplateBaseFolder>\Data\ModProjects\ETS2\Templates\Manifest\</TemplateBaseFolder>
+    <TemplateDescription>Adds mod manifest data</TemplateDescription>
+    <Variables>
+      <Variable xsi:type="StringVariable">
+        <ChildVariables />
+        <Group>basic</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#name</HelpSource>
+        <Id>33c5d965-5949-44f6-bc49-8d2309abef40</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>display_name</Name>
+        <Text>Mod Name</Text>
+        <Validators />
+        <Value>AiMisskeyTrailer</Value>
+      </Variable>
+      <Variable xsi:type="StringVariable">
+        <ChildVariables />
+        <Group>basic</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#author</HelpSource>
+        <Id>3412f501-61ee-4440-84d2-8149d7e89391</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>author</Name>
+        <Text>Mod Author</Text>
+        <Validators />
+        <Value>Kon Kon Tannu Morote(@morotesovtannu@sushi.ski)</Value>
+      </Variable>
+      <Variable xsi:type="StringVariable">
+        <ChildVariables />
+        <Group>basic</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#version</HelpSource>
+        <Id>c0adff8c-29ac-4169-aaa2-ba4f2388ed5d</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>package_version</Name>
+        <Text>Mod Version</Text>
+        <Validators />
+        <Value>1.0</Value>
+      </Variable>
+      <Variable xsi:type="ScsStringArrayVariable">
+        <ChildVariables />
+        <Group>basic</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#dlcs</HelpSource>
+        <Id>694490c3-f5e6-43fd-86c5-ef746c9fb4ea</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>dlc_dependencies</Name>
+        <Text>DLC Dependencies</Text>
+        <Validators />
+        <AllowEditing>false</AllowEditing>
+        <DisplayMode>Auto</DisplayMode>
+        <InternalName>dlc_dependencies</InternalName>
+        <PredefinedValueSource>PVS.ScsEts2DlcList</PredefinedValueSource>
+        <PredefinedValues>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>d613f00b-4b33-433b-80ef-6959fe55f01c</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Actros Tuning Pack</Text>
+            <Validators />
+            <Value>dlc_actros_tuning</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Maps</Group>
+            <Id>177b6ad1-f8ae-4322-8a55-41e7dd1c2fab</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Road To The Black Sea</Text>
+            <Validators />
+            <Value>dlc_balkan_e</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Maps</Group>
+            <Id>dd888bd5-f311-4581-a46c-90ebc85c2424</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Beyond the Baltic Sea</Text>
+            <Validators />
+            <Value>dlc_balt</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>1ba881d6-96bd-4f13-b75b-181ee45909fe</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Christmas Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_christmas</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>3c5e0610-bf0c-47e1-9478-b9de3b070c1a</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>XF Tuning Pack</Text>
+            <Validators />
+            <Value>dlc_daf_tuning_pack</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>7e2289a1-ce23-4c05-9ad8-e9699935f28c</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Dragon Truck Design Pack</Text>
+            <Validators />
+            <Value>dlc_dragon</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Maps</Group>
+            <Id>bf57d6ab-e701-4ebb-a2fe-3d129b854b78</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Going East!</Text>
+            <Validators />
+            <Value>dlc_east</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>30c23688-3c37-4a8b-92d6-c1cbf5257c62</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Fantasy Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_fantasy</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>2aadef4a-96f2-491d-9791-ff170d2e0b5d</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Austrian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_at</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>0dccda1e-6b9d-4ad3-bf78-d2ad75835e5e</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Australian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_aus</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>e438c7cd-f54f-4f49-bdf1-5b120179add8</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Belgian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_be</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>d1b1a16b-088a-4435-9714-f0d8023e6dd5</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Bulgarian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_bg</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>ac77beca-8dbc-4b4d-9bcc-3a7d0281c3b5</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Brazilian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_bz</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>14476d0a-8aa3-4349-b0ee-bcfcc0c9d370</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Canadian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_ca</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>62dc077c-f63e-4a11-be31-a07aa773eabc</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Swiss Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_ch</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>9c9f114a-79b5-460a-b904-009b3f2e0de0</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Chinese Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_cn</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>94209673-f3e1-4171-822e-2e1fc753e250</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Czech Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_cz</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>0acbcb8c-16ce-4376-8db5-9b88f1999a0c</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>German Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_de</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>409718d0-6378-46f9-a19c-662b82b68334</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Danish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_dk</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>490da670-b325-47bc-b3b2-14eb5b173c93</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Estonian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_ee</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>8f6da9ee-d418-4045-98c8-874c625794bd</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Spanish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_es</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>4174b716-a3af-42ee-b278-ccdea1b317eb</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Finnish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_fi</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>8676eeb4-21ff-4734-93eb-577cf9e4e28a</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>French Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_fr</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>df164510-87f3-4f28-ba14-c4ad62976a54</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Hungarian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_hu</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>3276ea27-5149-447b-a03c-fe9078fc4d41</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Irish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_ie</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>8d9ec87e-ca82-41bf-a002-f8b8f994863e</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Italian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_it</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>2c7fc0df-4712-413a-ae4b-14143535e63e</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Japanese Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_jp</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>a40e6042-a70c-49bf-9c5e-fd86c033eda2</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>South Korean Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_kr</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>4f798e3e-5aaf-4e22-b8fb-0e740cd865b7</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Lithuanian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_lt</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>4faf1369-cb4e-41fb-b19f-0d8c86117ce9</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Latvian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_lv</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>e57a3bae-f005-4b65-9cd4-ab9faa3ecf43</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Norwegian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_n</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>e3196167-6b5e-4710-b190-5ad10de20083</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Dutch Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_nl</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>19196ab7-bf0e-4f10-947e-0f8bd0facd2b</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Polish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_pl</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>f576dab8-af9d-4a50-990f-25e34be78b4a</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Portuguese Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_pt</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>ba78c9a0-16ac-44cc-bfad-03864c307a51</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Romanian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_ro</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>e44c98cb-f218-42ed-8116-f3d70d7b46aa</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Russian Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_ru</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>3b4ae737-1dcf-4d8f-8142-1982eec02f7c</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Swedish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_s</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>3efb26cf-5fb1-4213-8836-fcfd96b72d91</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Scottish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_sc</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>963b3ba2-6a0a-4c1b-b292-90d059540a91</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Slovak Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_sk</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>bf2f445e-0fa5-4738-ba23-7b68424da543</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Turkish Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_tr</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>beedf426-7989-4a39-aecb-6ef60781d665</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>UK Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_uk</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Country Paint Jobs</Group>
+            <Id>0169f739-8c7f-4ae4-af10-f6f56594755b</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>USA Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_flags_us</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Maps</Group>
+            <Id>31055900-bee3-43e8-ae99-72824d20264f</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Viva La France!</Text>
+            <Validators />
+            <Value>dlc_fr</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>8301ccc4-7e59-44a3-9aeb-3b65a7d6e031</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Goodyear Tires Pack</Text>
+            <Validators />
+            <Value>dlc_goodyear</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>8dc0c7a0-afd8-4a7e-a438-94533cda310a</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Halloween Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_halloween</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Cargo</Group>
+            <Id>fcd07d5d-cdcc-4e43-8c1b-f0edb2f5f308</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Heavy Cargo Pack</Text>
+            <Validators />
+            <Value>dlc_heavy_cargo</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>bebb15b1-64a6-4904-b411-ddf9a23cd7e2</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>HS-Schoch Tuning Pack</Text>
+            <Validators />
+            <Value>dlc_hs_schoch</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Maps</Group>
+            <Id>845d1533-64b9-4b6d-b645-095a9cc44e63</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Italia</Text>
+            <Validators />
+            <Value>dlc_it</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Trailers</Group>
+            <Id>615c9894-a205-46b7-bd44-3eb9f5ece05f</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Krone Trailer Pack</Text>
+            <Validators />
+            <Value>dlc_krone</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>783a1651-9b63-4cb1-91f2-9ec0728a463b</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Metallic Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_metallics</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>55768087-1bb1-4022-93aa-a350c8de9d01</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Flip Paint Designs</Text>
+            <Validators />
+            <Value>dlc_metallics2</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>81ee146d-1907-4364-b8de-ffb317d02aba</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Michelin Fan Pack</Text>
+            <Validators />
+            <Value>dlc_michelin</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>efee0f86-e8c4-40ed-bce5-728c476c2ae9</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Mighty Griffin Pack</Text>
+            <Validators />
+            <Value>dlc_mighty_griffin</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>a8c4fc80-cc88-4354-a0cb-3906fbfca0ec</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Force of Nature</Text>
+            <Validators />
+            <Value>dlc_nature</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Maps</Group>
+            <Id>00855736-809a-412d-b3dd-ea645afb2a57</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Scandinavia</Text>
+            <Validators />
+            <Value>dlc_north</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Cargo</Group>
+            <Id>d0976a99-78ec-4d02-be67-2e58bcd8ceef</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Special Transport</Text>
+            <Validators />
+            <Value>dlc_oversize</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>4977adde-a9dd-4a88-8dac-001080d996a2</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>PC Gamer DLC</Text>
+            <Validators />
+            <Value>dlc_pcg</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>b69dbd13-676e-44e2-92b2-d95d5f32e006</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Window Flags</Text>
+            <Validators />
+            <Value>dlc_phys_flags</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>a2cea6e7-aee9-4690-9210-749e563186dc</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Pink Ribbon Charity Pack</Text>
+            <Validators />
+            <Value>dlc_pink_ribbon</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>32783f8d-c540-417c-8e3a-1fc421f9eee9</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Pirate Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_pirates</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>0391ba86-c2ca-475e-81c9-4c25ca4004bc</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Prehistoric Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_prehistoric</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>fbdbd325-eac6-4b98-a5bf-cbb9e49667d4</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Raven Truck Design Pack</Text>
+            <Validators />
+            <Value>dlc_raven</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>564a63f5-4ab4-4147-8bf8-f3f42b8316e9</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Wheel Tuning Pack</Text>
+            <Validators />
+            <Value>dlc_rims</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>ec7801cb-269e-481b-a705-61631b6574b2</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Rocket Leauge Promo</Text>
+            <Validators />
+            <Value>dlc_rocket_league</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Trailers</Group>
+            <Id>6033a69b-602c-4c9b-b58c-5c1ad1a70d0c</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Schwarzmuller</Text>
+            <Validators />
+            <Value>dlc_schwarzmuller</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>59af4004-0bcc-4f09-9386-a3a3f5ed19bb</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Space Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_space</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>cd2fd3bb-a35f-4e88-be27-1b49e7ef5483</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Cabin Accessories</Text>
+            <Validators />
+            <Value>dlc_toys</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Cargo</Group>
+            <Id>973bee8e-e390-490e-98ed-adfbb049f848</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>High Power Cargo Pack</Text>
+            <Validators />
+            <Value>dlc_trailers</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>7c59d7b8-ce19-4f23-911e-3524f3c29c0b</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Valentine's Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_valentine</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>e197397f-f659-4712-8f06-dec6b2efd4ad</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Viking Legends</Text>
+            <Validators />
+            <Value>dlc_vikings</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Tuning Packs</Group>
+            <Id>5389f5f4-2f9b-4fa0-bb8f-313597d0ebcb</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>FH Tuning Pack</Text>
+            <Validators />
+            <Value>dlc_volvo_tuning_pack</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Group>Paint Job Packs</Group>
+            <Id>afb4a16d-52d5-4a40-b55f-c79c594baac7</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>Ice Cold Paint Jobs</Text>
+            <Validators />
+            <Value>dlc_winter</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+        </PredefinedValues>
+        <PredefinedValuesSelected>false</PredefinedValuesSelected>
+      </Variable>
+      <Variable xsi:type="ScsStringArrayVariable">
+        <ChildVariables />
+        <Group>basic</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#category</HelpSource>
+        <Id>dd03c0b8-40d8-4b06-b966-c529590ab7fd</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>category</Name>
+        <Text>Mod Category</Text>
+        <Validators />
+        <AllowEditing>false</AllowEditing>
+        <DisplayMode>Auto</DisplayMode>
+        <Value>
+          <string>trailer</string>
+          <string>paint_job</string>
+        </Value>
+        <InternalName>category</InternalName>
+        <PredefinedValueSource>PVS.ScsModCategoriesList</PredefinedValueSource>
+        <PredefinedValues>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>7b6eefcb-0106-4cba-99c6-3d1dbd619770</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>truck</Text>
+            <Value>truck</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>149edd7f-c943-44e0-bf54-957fc14cc22a</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>trailer</Text>
+            <Value>trailer</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>0a3848a0-29bc-4693-8924-cafb155573b3</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>interior</Text>
+            <Value>interior</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>de6d29c0-a21d-410b-a3be-393adc8813ee</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>tuning_parts</Text>
+            <Value>tuning_parts</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>c28af937-8942-4ffb-8fb7-7dcbe24f7cee</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>ai_traffic</Text>
+            <Value>ai_traffic</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>2fb6b075-b567-4f41-9026-a13b87650163</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>sound</Text>
+            <Value>sound</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>00faf754-732a-4fd5-9ecd-cdfe850e0cf8</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>paint_job</Text>
+            <Value>paint_job</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>57a113bd-a9ba-4728-b367-0914773e7499</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>cargo_pack</Text>
+            <Value>cargo_pack</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>7369f20b-837f-4856-b9aa-c29748e0e40a</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>map</Text>
+            <Value>map</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>ca953afd-7af4-4e47-9082-a2a24cf91481</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>ui</Text>
+            <Value>ui</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>4c2633e1-5279-4317-9b62-073039281478</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>weather_setup</Text>
+            <Value>weather_setup</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>6af65c79-8e9b-4d13-b4e7-94b2bea2ec97</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>physics</Text>
+            <Value>physics</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>db8cdbcc-435f-44e2-9514-4c4abafc669d</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>graphics</Text>
+            <Value>graphics</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>3d6118a6-e6ac-45a5-b246-4e736e74b881</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>models</Text>
+            <Value>models</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>def3b62a-5876-469e-81e3-be2bdea14b21</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>movers</Text>
+            <Value>movers</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>5fb26e4a-cc02-4664-909d-5b03b4dc38cf</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>walkers</Text>
+            <Value>walkers</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>5d604bbc-fd3a-4c3a-8e26-7468a90d82e2</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>prefabs</Text>
+            <Value>prefabs</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+          <ListItemVariable>
+            <ChildVariables />
+            <Id>37cc0373-7732-422b-89d9-9dd529f8cd0a</Id>
+            <IsEnabled>true</IsEnabled>
+            <Text>other</Text>
+            <Value>other</Value>
+            <PredefinedValuesSelected>false</PredefinedValuesSelected>
+          </ListItemVariable>
+        </PredefinedValues>
+        <PredefinedValuesSelected>false</PredefinedValuesSelected>
+      </Variable>
+      <Variable xsi:type="ScsStringArrayVariable">
+        <ChildVariables />
+        <Group>basic</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#compatibleversion</HelpSource>
+        <Id>0c4c3907-1a1f-4145-abee-01255e8d2eec</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>compatible_versions</Name>
+        <Text>Compatible Versions</Text>
+        <Validators>
+          <Validator xsi:type="RegexValidator">
+            <RegexPattern>(?:\*|\d+)\.(?:\*|\d+)\.(?:\*|\d+)</RegexPattern>
+          </Validator>
+        </Validators>
+        <AllowEditing>false</AllowEditing>
+        <DisplayMode>Auto</DisplayMode>
+        <InternalName>compatible_versions</InternalName>
+        <PredefinedValuesSelected>false</PredefinedValuesSelected>
+      </Variable>
+      <Variable xsi:type="ImageSourceVariable">
+        <ChildVariables />
+        <Group>icon</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#icon</HelpSource>
+        <Id>96e07af8-cbcf-442a-a6cf-22a9ee279c2c</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>icon</Name>
+        <Text>Mod Icon</Text>
+        <Validators>
+          <Validator xsi:type="NotEmptyValidator">
+            <AdviceMessage>Please select an image.</AdviceMessage>
+          </Validator>
+          <Validator xsi:type="ImageSizeValidator">
+            <AdviceMessage />
+            <Width>276</Width>
+            <Height>162</Height>
+          </Validator>
+          <Validator xsi:type="ImageFormatValidator">
+            <ImgFormat>Jpg</ImgFormat>
+          </Validator>
+        </Validators>
+        <Value>C:\Users\uttym\OneDrive\ドキュメント\Mods Studio 2\AiTrailer Ver.1\276162.jpg</Value>
+        <AllowedExtensions>
+          <string>jpg</string>
+        </AllowedExtensions>
+        <PreloadDefault>true</PreloadDefault>
+        <UseDefaultOptions>
+          <string>manifest.jpg</string>
+        </UseDefaultOptions>
+      </Variable>
+      <Variable xsi:type="TextVariable">
+        <ChildVariables />
+        <Group>text</Group>
+        <HelpSource>/docs/references/mod-manifest-scs#description</HelpSource>
+        <Id>b1a886be-8ea9-4e49-8a18-1676963d757f</Id>
+        <IsEnabled>true</IsEnabled>
+        <Name>description</Name>
+        <Text>Mod Description</Text>
+        <Validators />
+        <Value>@morotesovtannu@sushi.ski が作成しました。
+ロゴとイラストは公式リポジトリ(github.com/misskey-dev/misskey)よりお借りしました。</Value>
+      </Variable>
+    </Variables>
+  </ScsModManifest>
+</Project>
